@@ -1,0 +1,39 @@
+#!/bin/sh
+
+DEFAULT_FILTER="ByArtistAndAlbum"
+LIBRARY_DIR=/media/shared/music/
+MPT_ENGINE=../mpt_engine/target/main
+MPT_GUI=target/main
+
+ACTION=$1
+shift
+
+if [ "$ACTION" = "run_mpt" ]; then
+
+	$MPT_ENGINE $1 $2
+
+elif [ "$ACTION" = "update" ]; then
+
+	TIME_OPT=""
+	TYPE_OPT="-type f -and ( -iname *.mp3 -or -iname *.wmv )"
+
+	touch .new_timestamp
+	if [ -e ".timestamp" ]; then TIME_OPT="-newer .timestamp"; fi
+	if [ ! -e ".library" ]; then echo $DEFAULT_FILTER > .library; fi
+	find $LIBRARY_DIR $TIME_OPT $TYPE_OPT | $MPT_GUI -u > .changeset
+	$MPT_ENGINE .changeset +.library
+	mv .new_timestamp .timestamp
+	rm .changeset
+
+elif [ "$ACTION" = "play" ]; then
+
+	# MPD/MPC only, more player supports are welcome
+	mpc clear
+	cat $1 | while read line
+	do
+		mpc add "$(echo $line | sed s!^${LIBRARY_DIR}!!g)"
+	done
+	mpc play
+
+fi
+

@@ -1,0 +1,6 @@
+target
+managed
+.mpt_lib.db
+.timestamp
+.playlist
+.library

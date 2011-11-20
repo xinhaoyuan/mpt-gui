@@ -1,0 +1,65 @@
+<html>
+  <title>Music Player Tree GUI</title>
+  <head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Import jQuery and jQueryUI -->
+	<link href="jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="jquery-1.6.4.min.js"></script>
+	<script type="text/javascript" src="jquery-ui-1.8.16.custom.min.js"></script>
+
+	<!-- My UI code -->
+	<link href="ui.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="ui.js"></script>
+
+  </head>
+<body>
+  <div id="main">
+	<table width="100%">
+	  <tr><td width="40%">
+		  <div id="tree-tabs">
+			<ul>
+			  <li><a href="#tree-tabs-1">Trees</a></li>
+			  <li><a href="#tree-tabs-2">Tree View</a></li>
+			</ul>
+			<div id="tree-tabs-1" align="center">
+			  <div id="tree-sel-container">
+			  </div>
+			  <hr />
+			  <button id="tree-sel-create">Create/Reset</button>
+			  <button id="tree-sel-refresh">
+				Refresh the list
+			  </button>
+			</div>
+			<div id="tree-tabs-2">
+			  <div id="tree-view-container">
+				<div id="tree-view">
+				  You should pick up a play tree first.
+				</div>
+			  </div>
+			  <hr />
+			  <div align=center>
+				<button id="tree-view-create">&lt;</button>
+				<button id="tree-view-insert">+</button>
+				<button id="tree-view-remove">-</button>
+				<button id="tree-view-update">*</button>
+				<button id="tree-view-export">&gt;</button>
+			  </div>
+			</div>
+		  </div>
+		<td width="60%">
+		  <div id="selection-container">
+			<ul id="tree-selection-list"></ul>
+		  </div>
+		  <hr/>
+		  <div align="center">
+			<button id="selection-merge">Merge</button>
+			<button id="selection-play">Play</button>
+			<button id="selection-clear">Clear</button>
+		  </div>
+	  </td></tr>
+	</table>
+  </div>
+</body>
+</html>
+
